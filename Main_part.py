@@ -60,7 +60,7 @@ print(total_profit)
 plt.plot(df["Date"], df["Close"], label="Ціна", color="green")
 plt.plot(df["Date"], df["Short_Moving_Average"], label= "Short Moving Average", color="red")
 plt.plot(df["Date"], df["Long_Moving_Average"], label= "Long Moving Average", color="orange")
-#рядки
+#рядки де сигнал=1 і -1
 buys= df[df["Signal"] == 1]
 sells = df[df["Signal"] == -1]
 #точки купівлі/продажу (жовті і сині точки)
