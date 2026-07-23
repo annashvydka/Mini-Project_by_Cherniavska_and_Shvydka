@@ -19,13 +19,14 @@ df["Long_Moving_Average"] = df["Close"].rolling(long_period).mean()
 df["Signal"] = 0 #нова колонка сигналів
 
 for row in range( long_period, len(df)):
-    short_mov_aver= df["Short_Moving_Average"].iloc[row]
-    long_mov_aver= df["Long_Moving_Average"].iloc[row]
+    short_mov_aver= df.loc[row, "Short_Moving_Average"]
+    long_mov_aver= df.loc[row, "Long_Moving_Average"]
+
     if short_mov_aver > long_mov_aver:
-        df.loc[df.index[row], "Signal"] = 1
+        df.loc[row, "Signal"] = 1
     elif short_mov_aver < long_mov_aver:
-        df.loc[df.index[row], "Signal"] = -1
+        df.loc[row, "Signal"] = -1
     else:
-        df.loc[df.index[row], "Signal"] = 0
+        df.loc[row, "Signal"] = 0
 print(df)
 
