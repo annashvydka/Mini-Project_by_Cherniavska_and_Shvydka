@@ -2,6 +2,11 @@
 # Ці дані повинні включати основні показники, такі як ціна відкриття, ціна закриття, максимум, мінімум і обсяг торгів.
 
 import yfinance as yf
+import pandas as pd
 
 data = yf.download("SBUX", start="2025-01-01", end="2026-01-01")
-print(data.head())
+
+df = data.reset_index()  #бо дата була рядками, а тепер стала окремою колонкою і замість дат 123
+df = df[["Date", "Open", "High", "Low", "Close", "Volume"]]  #з усіх даних візьмемо лише ці колонкі
+
+print(df.head())
