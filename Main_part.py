@@ -3,6 +3,7 @@
 
 import yfinance as yf
 import pandas as pd
+import matplotlib.pyplot as plt
 
 #2
 data = yf.download("SBUX", start="2025-01-01", end="2026-01-01")
@@ -54,3 +55,18 @@ print(df)
 
 total_profit = df["Profit"].sum()
 print(total_profit)
+#4.2
+#ціна та ковзні середні
+plt.plot(df["Date"], df["Close"], label="Ціна", color="green")
+plt.plot(df["Date"], df["Short_Moving_Average"], label= "Short Moving Average", color="red")
+plt.plot(df["Date"], df["Long_Moving_Average"], label= "Long Moving Average", color="orange")
+#рядки
+buys= df[df["Signal"] == 1]
+sells = df[df["Signal"] == -1]
+#точки купівлі/продажу (жовті і сині точки)
+plt.scatter(buys["Date"], buys["Close"], label="Купівля", color="black", s=40)
+plt.scatter(sells["Date"], sells["Close"], label="Продаж", color="blue", s=40)
+
+plt.legend()
+plt.title ("Графік Starbucks за 2025 рік")
+plt.show()
